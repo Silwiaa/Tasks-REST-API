@@ -1,7 +1,7 @@
 call runcrud
 if "%ERRORLEVEL%" == "0" goto Chrome
 echo.
-echo Error during calling showtasks.bat - breaking work
+echo Error during calling runcrud.bat - breaking work
 goto fail
 
 :Chrome
