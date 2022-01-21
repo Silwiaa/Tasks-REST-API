@@ -19,7 +19,7 @@ public class TaskController {
     private final DbService service;
     private final TaskMapper taskMapper;
 
-    @GetMapping
+    @GetMapping(value = "/getTasks")
     public ResponseEntity<List<TaskDto>> getTasks() {
         List<Task> tasks = service.getAllTasks();
         return ResponseEntity.ok(taskMapper.mapToTaskDtoList(tasks));
@@ -30,21 +30,21 @@ public class TaskController {
         return ResponseEntity.ok(taskMapper.mapToTaskDto(service.findTask(taskId)));
     }
 
-    @DeleteMapping(value = "{taskId}")
+    @DeleteMapping(value = "(value =/updateTask/{taskId}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long taskId) throws TaskNotFoundException {
         Task task = service.findTask(taskId);
         service.deleteTask(taskId);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping
+    @PutMapping(value = "/updateTask")
     public ResponseEntity<TaskDto> updateTask(@RequestBody TaskDto taskDto) {
         Task task = taskMapper.mapToTask(taskDto);
         Task savedTask = service.saveTask(task);
         return ResponseEntity.ok(taskMapper.mapToTaskDto(savedTask));
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, value = "/createTask")
     public ResponseEntity<Void> createTask(@RequestBody TaskDto taskDto) {
         Task task = taskMapper.mapToTask(taskDto);
         service.saveTask(task);
