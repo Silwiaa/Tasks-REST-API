@@ -30,7 +30,7 @@ public class TaskController {
         return ResponseEntity.ok(taskMapper.mapToTaskDto(service.findTask(taskId)));
     }
 
-    @DeleteMapping(value = "(value =/deleteTask/{taskId}")
+    @DeleteMapping(value = "{taskId}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long taskId) throws TaskNotFoundException {
         Task task = service.findTask(taskId);
         service.deleteTask(taskId);
