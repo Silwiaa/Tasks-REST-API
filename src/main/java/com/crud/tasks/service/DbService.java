@@ -13,6 +13,7 @@ public class DbService {
     private final TaskRepository repository;
 
     public List<Task> getAllTasks() {
+
         return repository.findAll();
     }
 
@@ -21,6 +22,7 @@ public class DbService {
     }
 
     public Task saveTask(final Task task) {
+
         return repository.save(task);
     }
 
