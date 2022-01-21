@@ -32,7 +32,9 @@ public class TaskController {
 
     @DeleteMapping(value = "{taskId}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long taskId) {
-        service.deleteTask(taskId);
+        if (service.ifExist(taskId)) {
+            service.deleteTask(taskId);
+        }
         return ResponseEntity.ok().build();
     }
 

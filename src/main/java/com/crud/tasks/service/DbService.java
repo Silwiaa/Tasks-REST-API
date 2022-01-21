@@ -29,5 +29,9 @@ public class DbService {
     public void deleteTask(final Long taskId) {
         repository.deleteById(taskId);
     }
+
+    public boolean ifExist(final Long taskId) {
+        return repository.existsById(taskId);
+    }
 }
 
