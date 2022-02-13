@@ -12,6 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @Configuration
 public class CoreConfiguration {
+
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
@@ -22,6 +23,8 @@ public class CoreConfiguration {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
-                .build(); }
+                .paths(PathSelectors.regex("(?!.*error).*$"))
+                .build();
+    }
+
 }
