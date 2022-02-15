@@ -35,10 +35,11 @@ public class SimpleEmailService {
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
 
-        if (!mail.getToCc().isEmpty()) {
+        ofNullable(mail.getToCc()).ifPresent(cc -> {
             mailMessage.setCc(mail.getToCc());
             log.info("CC attached");
-        }
+        });
+
         return mailMessage;
     }
 }
