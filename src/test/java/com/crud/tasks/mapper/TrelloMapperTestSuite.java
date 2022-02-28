@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -143,7 +144,7 @@ class TrelloMapperTestSuite {
     }
 
     @Test
-    void testmapToListDto() {
+    void testMapToListDto() {
         //Given
         TrelloList trelloList1 = new TrelloList("1", "List 1", false);
         TrelloList trelloList2 = new TrelloList("2", "List 2", false);
@@ -175,5 +176,23 @@ class TrelloMapperTestSuite {
         assertEquals(resultTrelloListDto3.getId(), "3");
         assertEquals(resultTrelloListDto3.getName(), "List 3");
         assertFalse(resultTrelloListDto3.isClosed());
+    }
+
+    //Exc 29.2
+    @Test
+    void testMapToCardDto() {
+
+        //Given
+        TrelloCard trelloCard = new TrelloCard("Cart 1", "Description 1", "top", "1");
+
+        //When
+        TrelloCardDto resultTrelloCardDto = trelloMapper.mapToCardDto(trelloCard);
+
+        //Then
+        assertThat(resultTrelloCardDto).isNotNull();
+        assertThat(resultTrelloCardDto.getName()).isEqualTo("Cart 1");
+        assertThat(resultTrelloCardDto.getDescription()).isEqualTo("Description 1");
+        assertThat(resultTrelloCardDto.getPos()).isEqualTo("top");
+        assertThat(resultTrelloCardDto.getListId()).isEqualTo("1");
     }
 }

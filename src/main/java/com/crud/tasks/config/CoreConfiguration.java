@@ -28,5 +28,4 @@ public class CoreConfiguration {
                 .paths(PathSelectors.regex("(?!.*error).*$"))
                 .build();
     }
-
 }
