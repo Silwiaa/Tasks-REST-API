@@ -20,6 +20,7 @@ public class TrelloController {
 
     @GetMapping("getTrelloBoards")
     public List<TrelloBoardDto> getTrelloBoards() {
+        System.out.println("start");
         return trelloFacade.fetchTrelloBoards();
     }
 
