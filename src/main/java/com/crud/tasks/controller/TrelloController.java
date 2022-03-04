@@ -15,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TrelloController {
 
+    @Autowired
     private final TrelloFacade trelloFacade;
 
     @GetMapping("getTrelloBoards")
