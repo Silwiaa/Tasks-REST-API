@@ -1,6 +1,7 @@
 package com.crud.tasks.service;
 
 import com.crud.tasks.config.AdminConfig;
+import com.crud.tasks.config.CompanyDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -15,20 +16,24 @@ public class MailCreatorService {
     private AdminConfig adminConfig;
 
     @Autowired
+    private CompanyDetails companyDetails;
+
+    @Autowired
     @Qualifier("templateEngine")
     private TemplateEngine templateEngine;
 
     public String buildTrelloCardEmail(String message) {
         Context context = new Context();
+        context.setVariable("preview_message", "New card created");
         context.setVariable("message", message);
         context.setVariable("tasks_url", "https://silwiaa.github.io/");
         context.setVariable("button", "Visit website");
         context.setVariable("admin_name", adminConfig.getAdminName());
         context.setVariable("goodbye_message", "Thank you for being with us!");
-        context.setVariable("company_name", adminConfig.getCompanyName());
-        context.setVariable("company_goal", adminConfig.getCompanyGoal());
-        context.setVariable("company_email", adminConfig.getCompanyEmail());
-        context.setVariable("company_phone", adminConfig.getCompanyPhone());
+        context.setVariable("company_name", companyDetails.getCompanyName());
+        context.setVariable("company_goal", companyDetails.getCompanyGoal());
+        context.setVariable("company_email", companyDetails.getCompanyEmail());
+        context.setVariable("company_phone", companyDetails.getCompanyPhone());
         return templateEngine.process("mail/created-trello-card-mail", context);
     }
 }
