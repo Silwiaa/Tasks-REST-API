@@ -28,6 +28,7 @@ public class MailCreatorService {
         context.setVariable("message", message);
         context.setVariable("tasks_url", "https://silwiaa.github.io/");
         context.setVariable("button", "Visit website");
+        context.setVariable("show_button", false);
         context.setVariable("admin_name", adminConfig.getAdminName());
         context.setVariable("goodbye_message", "Thank you for being with us!");
         context.setVariable("company_name", companyDetails.getCompanyName());
