@@ -31,7 +31,7 @@ public class TaskController {
     }
 
     @DeleteMapping(value = "/tasks/{taskId}")
-        public ResponseEntity<Void> deleteTask(@RequestParam Long taskId) {
+        public ResponseEntity<Void> deleteTask(@PathVariable Long taskId) {
         if (service.ifExist(taskId)) {
             service.deleteTask(taskId);
         }
