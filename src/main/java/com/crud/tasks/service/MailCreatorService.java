@@ -56,7 +56,7 @@ public class MailCreatorService {
         Context context = new Context();
         context.setVariable("preview", "Trello app - Your daily information");
         context.setVariable("message", message);
-        context.setVariable("tasks_url", "http://localhost:8888/tasks_frontend");
+        context.setVariable("tasks_url", "https://silwiaa.github.io/");
         context.setVariable("button", "See tasks");
         context.setVariable("admin_name", adminConfig.getAdminName());
         context.setVariable("company_name", companyDetails.getCompanyName());
