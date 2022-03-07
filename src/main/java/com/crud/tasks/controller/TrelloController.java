@@ -11,19 +11,19 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/v1/trello/")
+@RequestMapping("/v1/trello")
 @RequiredArgsConstructor
 public class TrelloController {
 
     @Autowired
     private final TrelloFacade trelloFacade;
 
-    @GetMapping("getTrelloBoards")
+    @GetMapping("/boards")
     public List<TrelloBoardDto> getTrelloBoards() {
         return trelloFacade.fetchTrelloBoards();
     }
 
-    @PostMapping("createTrelloCard")
+    @PostMapping("/cards")
     public CreatedTrelloCardDto createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
         return trelloFacade.createCard(trelloCardDto);
     }
