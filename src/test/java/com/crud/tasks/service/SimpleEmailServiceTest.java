@@ -6,12 +6,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 import static java.util.Optional.ofNullable;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.springframework.test.util.AssertionErrors.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
 class SimpleEmailServiceTest {
@@ -19,11 +21,14 @@ class SimpleEmailServiceTest {
     @InjectMocks
     private SimpleEmailService simpleEmailService;
 
-   @Mock
+    @Mock
     private JavaMailSender javaMailSender;
 
+    @Autowired
+    private EmailTemplateSelector selector;
+
     @Test
-    public void shouldSendEmail() {
+    public void shouldSendTrelloCardEmail() {
         //Given
         Mail mail = Mail.builder()
                 .mailTo("test@test.com")
@@ -42,9 +47,9 @@ class SimpleEmailServiceTest {
         });
 
         //When
-        simpleEmailService.send(mail);
+        simpleEmailService.send(mail, EmailTemplateSelector.SCHEDULED_EMAIL);
 
         //Then
-        verify(javaMailSender, times(1)).send(mailMessage);
+
     }
 }
