@@ -29,6 +29,6 @@ public class EmailScheduler {
                         SUBJECT,
                         "Currently in database you got: " + size + taskOrTasks,
                         null
-                ), EmailTemplateSelector.SCHEDULED_EMAIL);
+                ), EmailTemplateSelector.TRELLO_CARD_EMAIL);
     }
 }
